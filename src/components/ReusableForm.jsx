@@ -6,7 +6,7 @@ function ReusableForm(props) {
   return (
     <React.Fragment>
       <div className="reUsableKegForm coralColor">
-        <h3 >{props.buttonText}</h3>
+        <h3>{props.buttonText}</h3>
         <form onSubmit={props.formSubmissionHandler}>
           <input
             required
