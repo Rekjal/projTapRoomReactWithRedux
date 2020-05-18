@@ -32,7 +32,6 @@ class KegControl extends React.Component {
   };
 
   handleAddingNewKegToList = (newKeg) => {
-    //Adding new ticket involves Mutating state of SHARED STATE "masterKegList"
     const newMasterKegList = this.state.masterKegList.concat(newKeg);
     this.setState({
       masterKegList: newMasterKegList,
@@ -41,7 +40,6 @@ class KegControl extends React.Component {
   };
 
   handleChangingSelectedKeg = (id) => {
-    //handle click event on a ticket
     const selectedKeg = this.state.masterKegList.filter(
       (keg) => keg.id === id
     )[0];
@@ -94,8 +92,8 @@ class KegControl extends React.Component {
 
     //Capture ID's of each object into am array so that I can re-render cards in the correct order
     const iDArray = this.state.masterKegList.map((element) => element.id);
-    console.log("KEYCONTROL - Printing iDArray");
-    console.log(iDArray);
+    //console.log("KEYCONTROL - Printing iDArray");
+    //console.log(iDArray);
 
     const tempNewMasterKegList = this.state.masterKegList
       .filter((keg) => keg.id !== id)
@@ -138,9 +136,7 @@ class KegControl extends React.Component {
         <NewKegForm onNewKegCreation={this.handleAddingNewKegToList} />
       );
       buttonText = "Return to Keg List";
-    } else {
-      //KegList.jsx shall render if LOCAL STATE "formToRender" is FALSE
-
+    } else {//KegList.jsx shall render if LOCAL STATE "formToRender" is FALSE      
       currentlyVisibleForm = (
         <KegList
           className="grid-container flex-item card"

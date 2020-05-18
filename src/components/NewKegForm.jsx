@@ -1,6 +1,6 @@
 import React from "react";
 import { v4 } from "uuid";
-import PropTypes from "prop-types"; //import PropTypes
+import PropTypes from "prop-types";
 import ReusableForm from "./ReusableForm";
 
 function NewKegForm(props) {
@@ -19,7 +19,6 @@ function NewKegForm(props) {
 
   return (
     <React.Fragment>
-      {/* <h1> NewKegForm.jsx</h1> */}
       <ReusableForm
         formSubmissionHandler={handleNewKegFormSubmission}
         buttonText="Add New Keg!"
