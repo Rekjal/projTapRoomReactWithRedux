@@ -1,7 +1,6 @@
 import kegListReducer from "../../reducers/keg-list-reducer";
 
 describe("kegListReducer", () => {
- 
   let action;
   const kegData = {
     kegName: "Coke",
@@ -11,10 +10,27 @@ describe("kegListReducer", () => {
     id: 123,
   };
 
-  test("Should successfully add new ticket data to masterKegList", () => {
+  const currentState = {
+    1: {
+        kegName: "Pepsi",
+        kegBrand: "Pepsi Co",
+        kegPrice: "$11",
+        kegFlavor: "Diet Cola",
+        id: 124,
+    },
+    2: {
+        kegName: "Gold Spot",
+        kegBrand: "Indian Coke",
+        kegPrice: "$12",
+        kegFlavor: "Orange",
+        id: 125,
+    },
+  };
+
+  test("TEST-1: Should successfully add new ticket data to masterKegList", () => {
     const { kegName, kegBrand, kegPrice, kegFlavor, id } = kegData;
     action = {
-      type: "ADD_TICKET",
+      type: "ADD_KEG",
       kegName: kegName,
       kegBrand: kegBrand,
       kegPrice: kegPrice,
@@ -33,7 +49,23 @@ describe("kegListReducer", () => {
     });
   });
 
-  test("Should return default state if there is no action type passed into the reducer", () => {
+  test("TEST-2: Should successfully delete a ticket", () => {
+    action = {
+      type: "DELETE_KEG",
+      id: 1,
+    };
+    expect(kegListReducer(currentState, action)).toEqual({
+        2: {
+            kegName: "Gold Spot",
+            kegBrand: "Indian Coke",
+            kegPrice: "$12",
+            kegFlavor: "Orange",
+            id: 125,
+        },
+    });
+  });
+
+  test("TEST-3: Should return default state if there is no action type passed into the reducer", () => {
     expect(kegListReducer({}, { type: null })).toEqual({});
   });
 });
