@@ -12,10 +12,11 @@ function Keg(props) {
     whenKegPintSaleClicked,
     whenKegClicked,
     disableButton,
-    kegPrice,
+    kegPrice
   } = props;
   // let spanSyntax = "<span className=\"black\">Price: </span>";
 
+  console.log("inside keg js: disableButton is: " + disableButton);
   return (
     <React.Fragment>
       <div className="KegCard coralColor">

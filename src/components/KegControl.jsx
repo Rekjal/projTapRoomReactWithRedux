@@ -14,7 +14,7 @@ class KegControl extends React.Component {
       formToRender: false, //Local State
       // masterKegList: [], //Shared State (passed down to KegList.jsx and from there to Keg.jsx)
       selectedKeg: null,
-      alertMessage: null,
+     // alertMessage: null,
       editing: false,
     };
   }
@@ -40,7 +40,16 @@ class KegControl extends React.Component {
     //   formToRender: false,
     // });
     const { dispatch } = this.props;
-    const { id, kegName, kegBrand, kegPrice, kegFlavor } = newKeg;
+    const {
+      kegName,
+      kegBrand,
+      kegPrice,
+      kegFlavor,
+      id,
+      pintQty,
+      alertMessage,
+      disableButton,
+    } = newKeg;
     const action = {
       type: "ADD_KEG",
       id: id,
@@ -48,6 +57,9 @@ class KegControl extends React.Component {
       kegBrand: kegBrand,
       kegPrice: kegPrice,
       kegFlavor: kegFlavor,
+      pintQty: pintQty,
+      alertMessage: alertMessage,
+      disableButton: disableButton,
     };
     dispatch(action);
     this.setState({ formVisibleOnPage: false });
@@ -59,7 +71,7 @@ class KegControl extends React.Component {
     // )[0];
     // this.setState({ selectedKeg: selectedKeg });
     const selectedKeg = this.props.masterKegList[id];
-    this.setState({selectedKeg: selectedKeg});
+    this.setState({ selectedKeg: selectedKeg });
   };
 
   handleDeletingKeg = (id) => {
@@ -94,7 +106,16 @@ class KegControl extends React.Component {
     //   selectedKeg: null, //Set to false since wont want KefDetail component showing now that Keg is deleted
     // });
     const { dispatch } = this.props;
-    const { id, kegName, kegBrand, kegPrice, kegFlavor } = kegToEdit;
+    const {
+      kegName,
+      kegBrand,
+      kegPrice,
+      kegFlavor,
+      id,
+      pintQty,
+      alertMessage,
+      disableButton,
+    } = kegToEdit;
     const action = {
       type: "ADD_KEG",
       id: id,
@@ -102,6 +123,9 @@ class KegControl extends React.Component {
       kegBrand: kegBrand,
       kegPrice: kegPrice,
       kegFlavor: kegFlavor,
+      pintQty: pintQty,
+      alertMessage: alertMessage,
+      disableButton: disableButton,
     };
     dispatch(action);
     this.setState({
@@ -110,40 +134,62 @@ class KegControl extends React.Component {
     });
   };
 
-  handlePintSale = (id) => {
-    const tempDisableButton = "disabled";
-    const tempSelectedKeg = this.state.masterKegList.filter(
-      (keg) => keg.id === id
-    )[0];
+  handlePintSale = (idOfSelected) => {
+    const tempDisableButton2 = "disabled";
+    console.log("id is ");
+    console.log(idOfSelected);
+    const tempSelectedKeg = this.props.masterKegList[idOfSelected];
+    console.log("tempSelectedKeg is");
+    console.log(tempSelectedKeg);
     if (tempSelectedKeg.pintQty !== 0) {
       tempSelectedKeg.pintQty = tempSelectedKeg.pintQty - 1;
     }
 
+    let tempAlertMessage = "";
+    let tempDisableButton = tempSelectedKeg.disableButton;
     if (tempSelectedKeg.pintQty === 0) {
-      tempSelectedKeg.alertMessage = "Out Of Stock !!!";
-      tempSelectedKeg.disableButton = tempDisableButton;
+      tempAlertMessage = "Out Of Stock !!!";
+      tempDisableButton = tempDisableButton2;
     } else if (tempSelectedKeg.pintQty > 0) {
       if (tempSelectedKeg.pintQty >= 1 && tempSelectedKeg.pintQty <= 9) {
-        tempSelectedKeg.alertMessage = "Almost Empty !";
+        tempAlertMessage = "Almost Empty !";
       }
     }
 
     //Capture ID's of each object into am array so that I can re-render cards in the correct order
-    const iDArray = this.state.masterKegList.map((element) => element.id);
-    //console.log("KEYCONTROL - Printing iDArray");
-    //console.log(iDArray);
+    const iDArray = Object.values(this.props.masterKegList).map(
+      (element) => element.id
+    );
+    console.log("KEYCONTROL - Printing iDArray");
+    console.log(iDArray);
 
-    const tempNewMasterKegList = this.state.masterKegList
-      .filter((keg) => keg.id !== id)
-      .concat(tempSelectedKeg); //concatenate edited slice (with updated pintQty, alertMessage, and  disableButton) to object array
-
-    const orderedNewMasterKegList = iDArray.map(
-      (i) => tempNewMasterKegList.filter((e) => e.id === i)[0]
-    ); //removing object from Array to update property upset orginal order of array. This restores array to orginal order
+    const { dispatch } = this.props;
+    const {
+      kegName,
+      kegBrand,
+      kegPrice,
+      kegFlavor,
+      id,
+      pintQty,
+      alertMessage,
+      disableButton,
+    } = tempSelectedKeg;
+    const action = {
+      type: "ADD_KEG",
+      id: id,
+      kegName: kegName,
+      kegBrand: kegBrand,
+      kegPrice: kegPrice,
+      kegFlavor: kegFlavor,
+      pintQty: pintQty,
+      alertMessage: tempAlertMessage,
+      disableButton: tempDisableButton,
+    };
+    dispatch(action);
 
     this.setState({
-      masterKegList: orderedNewMasterKegList,
-      disableButton: tempDisableButton,
+      // masterKegList: orderedNewMasterKegList,
+     // disableButton: tempDisableButton,
       formToRender: false,
     });
   };
@@ -175,14 +221,13 @@ class KegControl extends React.Component {
       );
       buttonText = "Return to Keg List";
     } else {
-       currentlyVisibleForm = (
+      currentlyVisibleForm = (
         <KegList
           className="grid-container flex-item card"
           kegList={this.props.masterKegList}
           onKegSelectPintSale={this.handlePintSale}
           onKegSelection={this.handleChangingSelectedKeg}
         />
-
       ); //To handle user click on Keg.jsx, pass this method; Pass SHARED STATE "masterKegList" KegList.jsx
       buttonText = "Add New Keg";
     }
@@ -207,14 +252,14 @@ class KegControl extends React.Component {
 }
 
 KegControl.propTypes = {
-  masterKegList: PropTypes.object
+  masterKegList: PropTypes.object,
 };
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
-    masterKegList: state
-  }
-}
+    masterKegList: state,
+  };
+};
 
 KegControl = connect(mapStateToProps)(KegControl);
 

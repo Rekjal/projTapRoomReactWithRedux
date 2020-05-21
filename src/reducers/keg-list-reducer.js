@@ -1,5 +1,5 @@
 export default (state = {}, action) => {
-  const { kegName, kegBrand, kegPrice, kegFlavor, id } = action;
+  const { kegName, kegBrand, kegPrice, kegFlavor, id, pintQty, alertMessage, disableButton } = action;
   switch (action.type) {
     case "ADD_KEG":
       return Object.assign({}, state, {
@@ -10,6 +10,9 @@ export default (state = {}, action) => {
           kegPrice: kegPrice,
           kegFlavor: kegFlavor,
           id: id,
+          pintQty: pintQty,
+          alertMessage: alertMessage,
+          disableButton: disableButton,
         },
       });
     case "DELETE_KEG":
