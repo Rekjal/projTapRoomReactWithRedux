@@ -3,7 +3,7 @@ export default (state = {}, action) => {
   switch (action.type) {
     case "ADD_KEG":
       return Object.assign({}, state, {
-        //2nd arg is state ot be cloned. 3rd arg is changes ot be made to cloned object
+        //2nd arg is state to be cloned. 3rd arg is changes ot be made to cloned object
         [id]: {
           kegName: kegName,
           kegBrand: kegBrand,

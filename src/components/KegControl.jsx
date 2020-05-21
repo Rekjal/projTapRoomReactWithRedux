@@ -11,10 +11,8 @@ class KegControl extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      formToRender: false, //Local State
-      // masterKegList: [], //Shared State (passed down to KegList.jsx and from there to Keg.jsx)
+      formToRender: false, 
       selectedKeg: null,
-     // alertMessage: null,
       editing: false,
     };
   }
