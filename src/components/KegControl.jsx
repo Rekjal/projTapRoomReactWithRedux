@@ -34,11 +34,6 @@ class KegControl extends React.Component {
   };
 
   handleAddingNewKegToList = (newKeg) => {
-    // const newMasterKegList = this.state.masterKegList.concat(newKeg);
-    // this.setState({
-    //   masterKegList: newMasterKegList,
-    //   formToRender: false,
-    // });
     const { dispatch } = this.props;
     const {
       kegName,
@@ -62,27 +57,15 @@ class KegControl extends React.Component {
       disableButton: disableButton,
     };
     dispatch(action);
-    this.setState({ formVisibleOnPage: false });
+    this.setState({ formToRender: false });
   };
 
   handleChangingSelectedKeg = (id) => {
-    // const selectedKeg = this.state.masterKegList.filter(
-    //   (keg) => keg.id === id
-    // )[0];
-    // this.setState({ selectedKeg: selectedKeg });
     const selectedKeg = this.props.masterKegList[id];
     this.setState({ selectedKeg: selectedKeg });
   };
 
   handleDeletingKeg = (id) => {
-    //handle DELETE event on a ticket which boils down to removing that ticket object from SHARED STATE "masterKegList"
-    // const newMasterKegList = this.state.masterKegList.filter(
-    //   (keg) => keg.id !== id
-    // );
-    // this.setState({
-    //   masterKegList: newMasterKegList,
-    //   selectedKeg: null,
-    // });
     const { dispatch } = this.props;
     const action = {
       type: "DELETE_KEG",
@@ -97,14 +80,6 @@ class KegControl extends React.Component {
   };
 
   handleEditingKegInList = (kegToEdit) => {
-    // const editedMasterKegList = this.state.masterKegList
-    //   .filter((keg) => keg.id !== this.state.selectedKeg.id)
-    //   .concat(kegToEdit);
-    // this.setState({
-    //   masterKegList: editedMasterKegList,
-    //   editing: false, //Set to false since dont wont EditKegForm component to show
-    //   selectedKeg: null, //Set to false since wont want KefDetail component showing now that Keg is deleted
-    // });
     const { dispatch } = this.props;
     const {
       kegName,
@@ -135,12 +110,8 @@ class KegControl extends React.Component {
   };
 
   handlePintSale = (idOfSelected) => {
-    const tempDisableButton2 = "disabled";
-    console.log("id is ");
-    console.log(idOfSelected);
+    const disabledText = "disabled";
     const tempSelectedKeg = this.props.masterKegList[idOfSelected];
-    console.log("tempSelectedKeg is");
-    console.log(tempSelectedKeg);
     if (tempSelectedKeg.pintQty !== 0) {
       tempSelectedKeg.pintQty = tempSelectedKeg.pintQty - 1;
     }
@@ -149,19 +120,12 @@ class KegControl extends React.Component {
     let tempDisableButton = tempSelectedKeg.disableButton;
     if (tempSelectedKeg.pintQty === 0) {
       tempAlertMessage = "Out Of Stock !!!";
-      tempDisableButton = tempDisableButton2;
+      tempDisableButton = disabledText;
     } else if (tempSelectedKeg.pintQty > 0) {
       if (tempSelectedKeg.pintQty >= 1 && tempSelectedKeg.pintQty <= 9) {
         tempAlertMessage = "Almost Empty !";
       }
     }
-
-    //Capture ID's of each object into am array so that I can re-render cards in the correct order
-    const iDArray = Object.values(this.props.masterKegList).map(
-      (element) => element.id
-    );
-    console.log("KEYCONTROL - Printing iDArray");
-    console.log(iDArray);
 
     const { dispatch } = this.props;
     const {
@@ -188,8 +152,6 @@ class KegControl extends React.Component {
     dispatch(action);
 
     this.setState({
-      // masterKegList: orderedNewMasterKegList,
-     // disableButton: tempDisableButton,
       formToRender: false,
     });
   };
