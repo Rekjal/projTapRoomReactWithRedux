@@ -7,11 +7,11 @@ import "./Keg.css";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
+
 class KegControl extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      formToRender: false, 
       selectedKeg: null,
       editing: false,
     };
@@ -25,9 +25,11 @@ class KegControl extends React.Component {
         editing: false,
       });
     } else {
-      this.setState((prevState) => ({
-        formToRender: !prevState.formToRender,
-      }));
+      const { dispatch } = this.props;
+      const action = {
+        type: 'TOGGLE_FORM'
+      }
+      dispatch(action);
     }
   };
 
@@ -55,7 +57,10 @@ class KegControl extends React.Component {
       disableButton: disableButton,
     };
     dispatch(action);
-    this.setState({ formToRender: false });
+    const action2 = {
+      type: 'TOGGLE_FORM'
+    }
+    dispatch(action2);
   };
 
   handleChangingSelectedKeg = (id) => {
@@ -175,7 +180,7 @@ class KegControl extends React.Component {
         />
       );
       buttonText = "Return to Keg List";
-    } else if (this.state.formToRender) {
+    } else if (this.props.formToRender) {
       currentlyVisibleForm = (
         <NewKegForm onNewKegCreation={this.handleAddingNewKegToList} />
       );
@@ -217,7 +222,8 @@ KegControl.propTypes = {
 
 const mapStateToProps = (state) => {
   return {
-    masterKegList: state,
+    masterKegList: state.masterKegList,
+    formToRender: state.formToRender
   };
 };
 
