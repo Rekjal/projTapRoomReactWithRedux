@@ -1,8 +1,13 @@
-import formVisibleReducer from '../../reducers/form-visible-reducer';
+import formToRenderReducer from '../../reducers/form-to-render-reducer';
 
-describe("formVisibleReducer", () => {
+describe("formToRenderReducer", () => {
 
   test('Should return default state if no action type is recognized', () => {
-    expect(formVisibleReducer(false, { type: null })).toEqual(false);
+    expect(formToRenderReducer(false, { type: null })).toEqual(false);
   });
+
+  test('Should toggle form visibility state to true', () => {
+    expect(formToRenderReducer(false, { type: 'TOGGLE_FORM' })).toEqual(true);
+  });
+
 });
