@@ -7,20 +7,20 @@ import { createStore } from "redux";
 let store = createStore(rootReducer);
 
 describe("rootReducer", () => {
-  test("Should return default state if no action type is recognized", () => {
+  test("TEST-1 (rootReducer): Should return default state if no action type is recognized", () => {
     expect(rootReducer({}, { type: null })).toEqual({
       masterKegList: {},
       formToRender: false,
     });
   });
 
-  test("Check that initial state of ticketListReducer matches root reducer", () => {
+  test("TEST-2 (rootReducer): Check that initial state of ticketListReducer matches root reducer", () => {
     expect(store.getState().masterKegList).toEqual(
       kegListReducer(undefined, { type: null })
     );
   });
 
-  test("Check that initial state of formVisibleReducer matches root reducer", () => {
+  test("TEST-3 (rootReducer): Check that initial state of formVisibleReducer matches root reducer", () => {
     expect(store.getState().formToRender).toEqual(
       formToRenderReducer(undefined, { type: null })
     );
@@ -28,7 +28,7 @@ describe("rootReducer", () => {
 
 
 
-  test('Check that initial state of kegListReducer matches root reducer', () => {
+  test('TEST-4 (rootReducer): Check that initial state of kegListReducer matches root reducer', () => {
     const action = {
         type: 'ADD_KEG',
         kegName: 'Fanta',
@@ -44,7 +44,7 @@ describe("rootReducer", () => {
     expect(store.getState().masterKegList).toEqual(kegListReducer(undefined, action));
   });
   
-  test('Check that initial state of formToRenderReducer matches root reducer', () => {
+  test('TEST-5 (rootReducer): Check that initial state of formToRenderReducer matches root reducer', () => {
     const action = {
       type: 'TOGGLE_FORM'
     }

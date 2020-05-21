@@ -36,7 +36,7 @@ describe("kegListReducer", () => {
     },
   };
 
-  test("TEST-1: Should successfully add new ticket data to masterKegList", () => {
+  test("TEST-1 (kegList): Should successfully add new ticket data to masterKegList", () => {
     const {
       kegName,
       kegBrand,
@@ -73,7 +73,7 @@ describe("kegListReducer", () => {
     });
   });
 
-  test("TEST-2: Should successfully delete a ticket", () => {
+  test("TEST-2 (kegList): Should successfully delete a ticket", () => {
     action = {
       type: "DELETE_KEG",
       id: 1,
@@ -92,7 +92,7 @@ describe("kegListReducer", () => {
     });
   });
 
-  test("TEST-3: Should return default state if there is no action type passed into the reducer", () => {
+  test("TEST-3 (kegList): Should return default state if there is no action type passed into the reducer", () => {
     expect(kegListReducer({}, { type: null })).toEqual({});
   });
 });
