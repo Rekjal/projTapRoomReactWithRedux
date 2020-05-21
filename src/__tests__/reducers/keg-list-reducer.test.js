@@ -8,27 +8,45 @@ describe("kegListReducer", () => {
     kegPrice: "$10",
     kegFlavor: "Cola",
     id: 123,
+    pintQty: 15,
+    alertMessage: "",
+    disableButton: "disabled",
   };
 
   const currentState = {
     1: {
-        kegName: "Pepsi",
-        kegBrand: "Pepsi Co",
-        kegPrice: "$11",
-        kegFlavor: "Diet Cola",
-        id: 124,
+      kegName: "Pepsi",
+      kegBrand: "Pepsi Co",
+      kegPrice: "$11",
+      kegFlavor: "Diet Cola",
+      id: 124,
+      pintQty: 10,
+      alertMessage: "Almost Empty !",
+      disableButton: "",
     },
     2: {
-        kegName: "Gold Spot",
-        kegBrand: "Indian Coke",
-        kegPrice: "$12",
-        kegFlavor: "Orange",
-        id: 125,
+      kegName: "Gold Spot",
+      kegBrand: "Indian Coke",
+      kegPrice: "$12",
+      kegFlavor: "Orange",
+      id: 125,
+      pintQty: 0,
+      alertMessage: "Almost Empty !",
+      disableButton: "disableButton",
     },
   };
 
   test("TEST-1: Should successfully add new ticket data to masterKegList", () => {
-    const { kegName, kegBrand, kegPrice, kegFlavor, id } = kegData;
+    const {
+      kegName,
+      kegBrand,
+      kegPrice,
+      kegFlavor,
+      id,
+      pintQty,
+      alertMessage,
+      disableButton,
+    } = kegData;
     action = {
       type: "ADD_KEG",
       kegName: kegName,
@@ -36,6 +54,9 @@ describe("kegListReducer", () => {
       kegPrice: kegPrice,
       kegFlavor: kegFlavor,
       id: id,
+      pintQty: pintQty,
+      alertMessage: alertMessage,
+      disableButton: disableButton,
     };
 
     expect(kegListReducer({}, action)).toEqual({
@@ -45,6 +66,9 @@ describe("kegListReducer", () => {
         kegPrice: kegPrice,
         kegFlavor: kegFlavor,
         id: id,
+        pintQty: pintQty,
+        alertMessage: alertMessage,
+        disableButton: disableButton,
       },
     });
   });
@@ -55,13 +79,16 @@ describe("kegListReducer", () => {
       id: 1,
     };
     expect(kegListReducer(currentState, action)).toEqual({
-        2: {
-            kegName: "Gold Spot",
-            kegBrand: "Indian Coke",
-            kegPrice: "$12",
-            kegFlavor: "Orange",
-            id: 125,
-        },
+      2: {
+        kegName: "Gold Spot",
+        kegBrand: "Indian Coke",
+        kegPrice: "$12",
+        kegFlavor: "Orange",
+        id: 125,
+        pintQty: 0,
+        alertMessage: "Almost Empty !",
+        disableButton: "disableButton",
+      },
     });
   });
 
