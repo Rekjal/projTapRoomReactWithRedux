@@ -7,29 +7,49 @@ import "./Keg.css";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
-
 class KegControl extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      selectedKeg: null,
-      editing: false,
+     // selectedKeg: null,
+      // editing: false,
     };
   }
 
-  handleClick = () => {
-    if (this.state.selectedKeg != null) {
+  handleClick = () => {    
+    if (this.props.selectedKeg != null) {
+      console.log("Inside KegControl.js:handleClick -IF");
       this.setState({
-        formToRender: false,
-        selectedKeg: null,
-        editing: false,
+       // formToRender: false,
+        //selectedKeg: null,
+        //editing: false,
       });
+      const { dispatch } = this.props;
+      const action6 = {
+        type: "SET_NULL_SELECTEDKEG",
+        tempSelectedKeg: null,
+      };
+      dispatch(action6);
+
+
+      const action3 = {
+        type: "EDIT_EDITING",
+        editing: false,
+      };
+      dispatch(action3);
+
+      console.log("111.Inside KegControl.js:handleClick - EDIT_EDITING value shoudl be FALSE:" + this.props.edit);
+      console.log("111.typeof editing is " + typeof this.props.edit);
+
+     
     } else {
+      console.log("Inside KegControl.js:handleClick -ELSE");
       const { dispatch } = this.props;
       const action = {
-        type: 'TOGGLE_FORM'
-      }
+        type: "TOGGLE_FORM",
+      };
       dispatch(action);
+      console.log("Inside KegControl.js:handleClick - TOGGLE_FORM value shoudl be unknown " + this.props.formToRender);
     }
   };
 
@@ -58,14 +78,24 @@ class KegControl extends React.Component {
     };
     dispatch(action);
     const action2 = {
-      type: 'TOGGLE_FORM'
-    }
+      type: "TOGGLE_FORM",
+    };
     dispatch(action2);
+    console.log("Inside KegControl.js:handleAddingNewKegToList - TOGGLE_FORM -value shoudl be unknown " + this.props.formToRender);
+    console.log("typeof this.props.formToRender is " + typeof this.props.formToRender);
+    console.log("Inside KegControl.js:handleAddingNewKegToList - TOGGLE_FORM -masterKegList shoudl be " + this.props.masterKegList);
+    
   };
 
   handleChangingSelectedKeg = (id) => {
+    const { dispatch } = this.props;
     const selectedKeg = this.props.masterKegList[id];
-    this.setState({ selectedKeg: selectedKeg });
+    const action7 = {
+      type: "EDIT_SELECTEDKEG",
+      tempSelectedKeg: selectedKeg,
+    };
+    dispatch(action7);
+   // this.setState({ selectedKeg: selectedKeg });
   };
 
   handleDeletingKeg = (id) => {
@@ -75,12 +105,29 @@ class KegControl extends React.Component {
       id: id,
     };
     dispatch(action);
-    this.setState({ selectedKeg: null });
+
+    const action8 = {
+      type: "SET_NULL_SELECTEDKEG",
+      tempSelectedKeg: null,
+    };
+    dispatch(action8);
+
+    // this.setState({ selectedKeg: null });
   };
 
   handleEditClick = () => {
-    this.setState({ editing: true });
-  };
+    this.setState({       
+      //editing: true     
+    });
+        const { dispatch } = this.props;
+      const action3 = {
+        type: "EDIT_EDITING",
+        editing: true,
+      };
+      dispatch(action3);
+      console.log("222.Inside KegControl.js:handleEditClick - EDIT_EDITING value shoudl be TRUE:" + this.props.edit);
+      console.log("222.typeof editing is " + typeof this.props.edit);
+    };
 
   handleEditingKegInList = (kegToEdit) => {
     const { dispatch } = this.props;
@@ -106,10 +153,26 @@ class KegControl extends React.Component {
       disableButton: disableButton,
     };
     dispatch(action);
+
+    const action9 = {
+      type: "SET_NULL_SELECTEDKEG",
+      tempSelectedKeg: null,
+    };
+    dispatch(action9);
+
+
     this.setState({
-      editing: false,
-      selectedKeg: null,
+      //editing: false,
+     // selectedKeg: null,
     });
+        
+      const action3 = {
+        type: "EDIT_EDITING",
+        editing: false,
+      };
+      dispatch(action3);
+      console.log("333.Inside KegControl.js:handleEditingKegInList - EDIT_EDITING value shoudl be FALSE:" + this.props.edit);
+      console.log("333.typeof editing is " + typeof this.props.edit);
   };
 
   handlePintSale = (idOfSelected) => {
@@ -155,7 +218,7 @@ class KegControl extends React.Component {
     dispatch(action);
 
     this.setState({
-      formToRender: false,
+      //formToRender: false,
     });
   };
 
@@ -163,18 +226,20 @@ class KegControl extends React.Component {
     let currentlyVisibleForm = null;
     let buttonText = null;
 
-    if (this.state.editing) {
+    if (this.props.edit) {
+      console.log("Inside KegControl.js:render - EDIT_EDITING value shoudl be TRUE:" + this.props.edit);
+  
       currentlyVisibleForm = (
         <EditKegForm
-          keg={this.state.selectedKeg}
+          keg={this.props.selectedKeg}
           onEditKeg={this.handleEditingKegInList}
         />
       );
       buttonText = "Return to Keg List";
-    } else if (this.state.selectedKeg != null) {
+    } else if (this.props.selectedKeg != null) {
       currentlyVisibleForm = (
         <KegDetail
-          keg={this.state.selectedKeg}
+          keg={this.props.selectedKeg}
           onClickingDelete={this.handleDeletingKeg}
           onClickingEdit={this.handleEditClick}
         />
@@ -218,12 +283,17 @@ class KegControl extends React.Component {
 
 KegControl.propTypes = {
   masterKegList: PropTypes.object,
+  formToRender: PropTypes.bool,
+  edit: PropTypes.bool,
+  selectedKeg: PropTypes.object,
 };
 
 const mapStateToProps = (state) => {
   return {
     masterKegList: state.masterKegList,
-    formToRender: state.formToRender
+    formToRender: state.formToRender,
+    edit: state.edit,
+    selectedKeg: state.selectedKeg,
   };
 };
 

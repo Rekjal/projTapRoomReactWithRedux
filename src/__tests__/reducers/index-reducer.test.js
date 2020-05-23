@@ -1,6 +1,9 @@
 import rootReducer from "../../reducers/index";
 import formToRenderReducer from "../../reducers/form-to-render-reducer";
 import kegListReducer from "../../reducers/keg-list-reducer";
+import selectedKegReducer from "../../reducers/selected-keg-reducer";
+import editingReducer from "../../reducers/editing-reducer";
+
 
 import { createStore } from "redux";
 
@@ -11,6 +14,8 @@ describe("rootReducer", () => {
     expect(rootReducer({}, { type: null })).toEqual({
       masterKegList: {},
       formToRender: false,
+      edit:false,
+      selectedKeg: null,
     });
   });
 
@@ -25,8 +30,6 @@ describe("rootReducer", () => {
       formToRenderReducer(undefined, { type: null })
     );
   });
-
-
 
   test('TEST-4 (rootReducer): Check that initial state of kegListReducer matches root reducer', () => {
     const action = {
@@ -52,5 +55,22 @@ describe("rootReducer", () => {
     expect(store.getState().formToRender).toEqual(formToRenderReducer(undefined, action));
   });
 
+  test('TEST-6 (rootReducer): Check that initial state of selectedKegReducer matches root reducer', () => {
+    const action = {
+      type: 'SET_NULL_SELECTEDKEG',
+      tempSelectedKeg: null,
+    }
+    store.dispatch(action);
+    expect(store.getState().selectedKeg).toEqual(selectedKegReducer(undefined, action));
+  });
+
+  test('TEST-7 (rootReducer): Check that initial state of editingReducer matches root reducer', () => {
+    const action = {
+      type: 'EDIT_EDITING',
+      editing: true,
+    }
+    store.dispatch(action);
+    expect(store.getState().edit).toEqual(editingReducer(undefined, action));
+  });
 
 });

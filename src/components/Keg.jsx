@@ -16,7 +16,7 @@ function Keg(props) {
   } = props;
   // let spanSyntax = "<span className=\"black\">Price: </span>";
 
-  console.log("inside keg js: disableButton is: " + disableButton);
+  //console.log("inside keg js: disableButton is: " + disableButton);
   return (
     <React.Fragment>
       <div className="KegCard coralColor">
