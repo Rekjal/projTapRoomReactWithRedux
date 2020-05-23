@@ -1,5 +1,5 @@
 import formToRenderReducer from '../../reducers/form-to-render-reducer';
-import * as c from './../actions/ActionTypes';
+import * as c from '../../actions/ActionTypes';
 
 describe("formToRenderReducer", () => {
 

@@ -1,5 +1,5 @@
 import editingReducer from "../../reducers/editing-reducer";
-import * as c from './../actions/ActionTypes';
+import * as c from '../../actions/ActionTypes';
 
 describe("editingReducer", () => {
   let action;

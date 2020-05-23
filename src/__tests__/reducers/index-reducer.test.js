@@ -3,7 +3,7 @@ import formToRenderReducer from "../../reducers/form-to-render-reducer";
 import kegListReducer from "../../reducers/keg-list-reducer";
 import selectedKegReducer from "../../reducers/selected-keg-reducer";
 import editingReducer from "../../reducers/editing-reducer";
-import * as c from './../actions/ActionTypes';
+import * as c from '../../actions/ActionTypes';
 
 import { createStore } from "redux";
 
