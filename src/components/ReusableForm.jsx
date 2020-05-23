@@ -32,7 +32,6 @@ function ReusableForm(props) {
             name="kegFlavor"
             placeholder="Enter Keg Flavor"
           />
-          {/* <input type="text" name="kegQty" placeholder="Enter Quantity" /> */}
           <button className="buttonPrimary btn btn-primary" type="submit">
             {props.buttonText}
           </button>

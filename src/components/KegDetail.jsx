@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 
 function KegDetail(props) {
   const { keg, onClickingDelete } = props;
-
   return (
     <React.Fragment>
       <div className="kegDetail coralColor">
@@ -16,8 +15,7 @@ function KegDetail(props) {
           {keg.kegBrand}
         </p>
         <p>
-          <span className="black">Price: </span>
-          ${keg.kegPrice}
+          <span className="black">Price: </span>${keg.kegPrice}
         </p>
         <p>
           <span className="black">Flavor: </span>
@@ -37,7 +35,6 @@ function KegDetail(props) {
             Update Keg
           </button>
 
-          {/* When "Update Keg" button is clicked, STATE of "editing" is mutated (set to TRUE) in KegControl.jsx */}
           <br></br>
           <button
             className="btn btn-danger"

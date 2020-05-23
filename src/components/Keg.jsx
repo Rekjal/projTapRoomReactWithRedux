@@ -12,28 +12,45 @@ function Keg(props) {
     whenKegPintSaleClicked,
     whenKegClicked,
     disableButton,
-    kegPrice
+    kegPrice,
   } = props;
-  // let spanSyntax = "<span className=\"black\">Price: </span>";
 
-  //console.log("inside keg js: disableButton is: " + disableButton);
   return (
     <React.Fragment>
       <div className="KegCard coralColor">
         <div className="divAlign">
           <div className="divAlign1" onClick={() => whenKegClicked(id)}>
-            <p><span className="black">Name: </span>{kegName}
+            <p>
+              <span className="black">Name: </span>
+              {kegName}
             </p>
-            <p><span className="black">Brand: </span>{kegBrand}
+            <p>
+              <span className="black">Brand: </span>
+              {kegBrand}
             </p>
-            {/* <span className="black">Price: </span> */}
-            {/* <p>{kegPrice === 10 ? ({spanSyntax})(<span className="purpleColor">${kegPrice}</span>) : ({spanSyntax})(<span className="coralColor">${kegPrice}</span>)}</p> */}
-            <p><span className="black">Price: </span>${kegPrice}</p>
-            <p><span className="black">Pint Qty: </span>{pintQty}</p>
-            <p>{message === "Almost Empty !" ? (<span className="purpleColor">{message}</span>) : (<span className="redColor">{message}</span>)}</p>
+            <p>
+              <span className="black">Price: </span>${kegPrice}
+            </p>
+            <p>
+              <span className="black">Pint Qty: </span>
+              {pintQty}
+            </p>
+            <p>
+              {message === "Almost Empty !" ? (
+                <span className="purpleColor">{message}</span>
+              ) : (
+                <span className="redColor">{message}</span>
+              )}
+            </p>
           </div>
           <div className="buttonWidth">
-            <button disabled={disableButton} className="btn btn-success button" onClick={() => whenKegPintSaleClicked(id)}>Sell</button>
+            <button
+              disabled={disableButton}
+              className="btn btn-success button"
+              onClick={() => whenKegPintSaleClicked(id)}
+            >
+              Sell
+            </button>
           </div>
         </div>
       </div>

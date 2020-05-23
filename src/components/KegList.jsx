@@ -8,20 +8,21 @@ function KegList(props) {
 
   return (
     <React.Fragment>
-      {/* {kegList.map((keg) => ( */}
-        {Object.values(props.kegList).map((keg) => {
-       return  <Keg
-          whenKegClicked={onKegSelection}
-          whenKegPintSaleClicked={onKegSelectPintSale}
-          message={keg.alertMessage}
-          kegName={keg.kegName}
-          kegBrand={keg.kegBrand}
-          kegPrice={keg.kegPrice}
-          disableButton={keg.disableButton}
-          id={keg.id}
-          key={keg.id} //needed
-          pintQty={keg.pintQty}
-        />
+      {Object.values(props.kegList).map((keg) => {
+        return (
+          <Keg
+            whenKegClicked={onKegSelection}
+            whenKegPintSaleClicked={onKegSelectPintSale}
+            message={keg.alertMessage}
+            kegName={keg.kegName}
+            kegBrand={keg.kegBrand}
+            kegPrice={keg.kegPrice}
+            disableButton={keg.disableButton}
+            id={keg.id}
+            key={keg.id} //needed
+            pintQty={keg.pintQty}
+          />
+        );
       })}
     </React.Fragment>
   );

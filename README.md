@@ -1,4 +1,4 @@
-# # React Fundamentals: `Soda Fountain` Tap Room
+# # # # Refactoring of Tap Room Using React and Redux - Independent Project
 
 #### A React web application that represents a `Tap room Tracker` where a `Soda Fountain store` can track their kegs. Application lets store track the remaining amount in each Soda Keg & following are the main features of this application...
 
@@ -12,23 +12,17 @@
 
 -  User can click a button next to a keg whenever a pint is sold. Each click will decrease the number of pints left by 1. Once pint hits 0, further reduction is prevented by disabling the button.
 
-## Further Exploration
+-  **All**  state in application is handled by Redux (includes Local and Shared).
 
-Additional feature built into this application are as below ..
+-   All reducers were tested and all tests pass.
 
--  Option to `edit` a keg's properties after entering them (to correct mistake).
-
--  Option to `delete` a keg.
-
--  Keg gets updated with a message `"Out of Stock"` once it's empty.
-
--  When pints left in a keg is under 10, keg gets updated with a message `"Almost Empty"`.
+-   Action creators and constants were used.
 
 ## Component Tree Diagram
 
 ![alt text](https://github.com/Rekjal/projTapRoom/blob/master/src/img/Component_tree_diagram.png)
 
-##### Date: **05/08/2020**
+##### Date: **05/22/2020**
 
 #### By **Salim Mayan**
 
@@ -88,6 +82,7 @@ When above form is submitted, a flex box gets created with entered information (
 
 * React
 
+* Redux
 * HTML
 
 * CSS
