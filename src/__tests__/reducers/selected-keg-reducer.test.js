@@ -1,4 +1,5 @@
 import selectedKegReducer from "../../reducers/selected-keg-reducer";
+import * as c from './../actions/ActionTypes';
 
 describe("selectedKegReducer", () => {
   let action;
@@ -21,7 +22,7 @@ describe("selectedKegReducer", () => {
 
   test("TEST-2 (selectedKegReducer): Should return default state of null if action type passed into the reducer is SET_NULL_SELECTEDKEG", () => {
     action = {
-      type: "SET_NULL_SELECTEDKEG",
+      type: c.SET_NULL_SELECTEDKEG,
       tempSelectedKeg: null,
     };
     expect(selectedKegReducer({}, action)).toEqual(null);
@@ -40,7 +41,7 @@ describe("selectedKegReducer", () => {
     } = tempSelectedKeg;
 
     let action2 = {
-      type: "EDIT_SELECTEDKEG",
+      type: c.EDIT_SELECTEDKEG,
       tempSelectedKeg: tempSelectedKeg,
     };
     expect(selectedKegReducer({}, action2)).toEqual({        

@@ -1,7 +1,9 @@
+import * as c from './../actions/ActionTypes';
+
 export default (state = {}, action) => {
   const { kegName, kegBrand, kegPrice, kegFlavor, id, pintQty, alertMessage, disableButton } = action;
   switch (action.type) {
-    case "ADD_KEG":
+    case c.ADD_KEG:
       return Object.assign({}, state, {
         //2nd arg is state to be cloned. 3rd arg is changes ot be made to cloned object
         [id]: {
@@ -15,7 +17,7 @@ export default (state = {}, action) => {
           disableButton: disableButton,
         },
       });
-    case "DELETE_KEG":
+    case c.DELETE_KEG:
       const newState = { ...state };
       delete newState[id];
       return newState;

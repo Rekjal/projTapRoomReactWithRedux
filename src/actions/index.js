@@ -1,18 +1,20 @@
-  export const editEditing = (boolean) => ({
-    type: 'EDIT_EDITING',
+import * as c from './../actions/ActionTypes';
+
+export const editEditing = (boolean) => ({
+    type: c.EDIT_EDITING,
     editing: boolean,
   });
 
 
   export const toogleForm = () => ({
-    type: "TOGGLE_FORM",
+    type: c.TOGGLE_FORM,
   });
 
 
   export const addKeg = (keg) => {
     const { id, kegName, kegBrand, kegPrice, kegFlavor, pintQty, alertMessage, disableButton } = keg;
     return {
-        type: "ADD_KEG",
+        type: c.ADD_KEG,
         id: id,
         kegName: kegName,
         kegBrand: kegBrand,
@@ -25,25 +27,19 @@
 }
 
 export const deleteKeg = id => ({
-    type: 'DELETE_KEG',
+    type: c.DELETE_KEG,
     id
   });
 
   export const editSelectedKeg = selectedKeg => ({
-    type: 'EDIT_SELECTEDKEG',
+    type: c.EDIT_SELECTEDKEG,
     tempSelectedKeg: selectedKeg,
   });
 
   export const nullSelectedKeg = empty => ({
-    type: 'SET_NULL_SELECTEDKEG',
+    type: c.SET_NULL_SELECTEDKEG,
     tempSelectedKeg: empty,
   });
 
       
       
-//   EDIT_EDITING
-//   TOGGLE_FORM
-//   ADD_KEG
-//   DELETE_KEG
-//   EDIT_SELECTEDKEG
-//   SET_NULL_SELECTEDKEG

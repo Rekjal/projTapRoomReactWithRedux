@@ -1,4 +1,5 @@
 import editingReducer from "../../reducers/editing-reducer";
+import * as c from './../actions/ActionTypes';
 
 describe("editingReducer", () => {
   let action;
@@ -18,7 +19,7 @@ describe("editingReducer", () => {
   test("TEST-2 (editingReducer): Should return state value of true if same is passed via action type", () => {
     const { editing } = edit1;
     action = {
-      type: "EDIT_EDITING",
+      type: c.EDIT_EDITING,
       editing: editing,
     };
     expect(editingReducer({}, action)).toEqual(editing);
@@ -27,7 +28,7 @@ describe("editingReducer", () => {
   test("TEST-3 (editingReducer): Should return state value of false if same is passed via action type", () => {
     const { editing } = edit2;
     action = {
-      type: "EDIT_EDITING",
+      type: c.EDIT_EDITING,
       editing: editing,
     };
     expect(editingReducer({}, action)).toEqual(editing);

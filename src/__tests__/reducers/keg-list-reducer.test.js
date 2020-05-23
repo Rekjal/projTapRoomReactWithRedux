@@ -1,5 +1,5 @@
 import kegListReducer from "../../reducers/keg-list-reducer"
-
+import * as c from './../actions/ActionTypes';
 
 describe("kegListReducer", () => {
   let action;
@@ -49,7 +49,7 @@ describe("kegListReducer", () => {
       disableButton,
     } = kegData;
     action = {
-      type: "ADD_KEG",
+      type: c.ADD_KEG,
       kegName: kegName,
       kegBrand: kegBrand,
       kegPrice: kegPrice,
@@ -76,7 +76,7 @@ describe("kegListReducer", () => {
 
   test("TEST-2 (kegList): Should successfully delete a ticket", () => {
     action = {
-      type: "DELETE_KEG",
+      type: c.DELETE_KEG,
       id: 1,
     };
     expect(kegListReducer(currentState, action)).toEqual({

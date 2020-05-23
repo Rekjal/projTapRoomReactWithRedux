@@ -3,7 +3,7 @@ import formToRenderReducer from "../../reducers/form-to-render-reducer";
 import kegListReducer from "../../reducers/keg-list-reducer";
 import selectedKegReducer from "../../reducers/selected-keg-reducer";
 import editingReducer from "../../reducers/editing-reducer";
-
+import * as c from './../actions/ActionTypes';
 
 import { createStore } from "redux";
 
@@ -33,7 +33,7 @@ describe("rootReducer", () => {
 
   test('TEST-4 (rootReducer): Check that initial state of kegListReducer matches root reducer', () => {
     const action = {
-        type: 'ADD_KEG',
+        type: c.ADD_KEG,
         kegName: 'Fanta',
         kegBrand: 'Pepsi Co',
         kegPrice: 10,
@@ -49,7 +49,7 @@ describe("rootReducer", () => {
   
   test('TEST-5 (rootReducer): Check that initial state of formToRenderReducer matches root reducer', () => {
     const action = {
-      type: 'TOGGLE_FORM'
+      type: c.TOGGLE_FORM
     }
     store.dispatch(action);
     expect(store.getState().formToRender).toEqual(formToRenderReducer(undefined, action));
@@ -57,7 +57,7 @@ describe("rootReducer", () => {
 
   test('TEST-6 (rootReducer): Check that initial state of selectedKegReducer matches root reducer', () => {
     const action = {
-      type: 'SET_NULL_SELECTEDKEG',
+      type: c.SET_NULL_SELECTEDKEG,
       tempSelectedKeg: null,
     }
     store.dispatch(action);
@@ -66,7 +66,7 @@ describe("rootReducer", () => {
 
   test('TEST-7 (rootReducer): Check that initial state of editingReducer matches root reducer', () => {
     const action = {
-      type: 'EDIT_EDITING',
+      type: c.EDIT_EDITING,
       editing: true,
     }
     store.dispatch(action);
