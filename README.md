@@ -20,8 +20,9 @@
 
 ## Component Tree Diagram
 
-![alt text](https://github.com/Rekjal/projTapRoom/blob/master/src/img/Component_tree_diagram.png)
+![alt text](https://github.com/Rekjal/projTapRoomReactWithRedux/blob/master/src/img/Component_tree_diagram.png)
 
+            
 ##### Date: **05/22/2020**
 
 #### By **Salim Mayan**
@@ -32,11 +33,11 @@
 
     + Input: On `landing page`, click on `Add New Keg` button
 
-    + Output: The app shall display below component. ![alt text](https://github.com/Rekjal/projTapRoom/blob/master/src/img/Add_New_Keg.png)
+    + Output: The app shall display below component. ![alt text](https://github.com/Rekjal/projTapRoomReactWithRedux/blob/master/src/img/Add_New_Keg.png)
 
 When above form is submitted, a flex box gets created with entered information (see image below)
 
-![alt text](https://github.com/Rekjal/projTapRoom/blob/master/src/img/Tap_Room_with_1_Keg.png)
+![alt text](https://github.com/Rekjal/projTapRoomReactWithRedux/blob/master/src/img/Tap_Room_with_1_Keg.png)
 
 * Spec 2: Display `Keg Details`
 
@@ -44,7 +45,7 @@ When above form is submitted, a flex box gets created with entered information (
 
     + Output: User gets navigated to `Keg Details page` from where one can either `Delete` entire keg or `Update` data pertaining to current keg.
 
-![alt text](https://github.com/Rekjal/projTapRoom/blob/master/src/img/Keg_Details_page.png)
+![alt text](https://github.com/Rekjal/projTapRoomReactWithRedux/blob/master/src/img/Keg_Details_page.png)
 
 * Spec 3: Rendering of unlimited number of cards in an evenly spaced manner
 
@@ -52,7 +53,7 @@ When above form is submitted, a flex box gets created with entered information (
     
     + Output: UI will render multiple kegs in an evenly spaced manner
 
-![alt text](https://github.com/Rekjal/projTapRoom/blob/master/src/img/Tap_Room_with_many_Kegs.png)
+![alt text](https://github.com/Rekjal/projTapRoomReactWithRedux/blob/master/src/img/Tap_Room_with_many_Kegs.png)
 
 * Spec 4: Track remaining pint in a Keg and display alert messages when quantity edges closer to 0
 
@@ -66,7 +67,7 @@ When above form is submitted, a flex box gets created with entered information (
 
 		+ When pints left in a keg is under 10, keg gets updated with a message `"Almost Empty"`.
 
-![alt text](https://github.com/Rekjal/projTapRoom/blob/master/src/img/Tap_Room_tracking_multiple_kegs_its_pints_and_alert_Messages.png)
+![alt text](https://github.com/Rekjal/projTapRoomReactWithRedux/blob/master/src/img/Tap_Room_tracking_multiple_kegs_its_pints_and_alert_Messages.png)
 
 ## Setup/Installation Requirements
 
