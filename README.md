@@ -73,7 +73,7 @@ When above form is submitted, a flex box gets created with entered information (
 
 1. Clone this repository.
 
-2. To run program, do `npm install' and "npm run start'
+2. To run program, do `npm install --save-exact react-scripts@3.2.0`, `npm install' and "npm run start'
 
 ## Known Bugs
 
