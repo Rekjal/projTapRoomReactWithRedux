@@ -22,7 +22,7 @@ class KegControl extends React.Component {
       const { dispatch } = this.props;
       const action6 = a.nullSelectedKeg(null);
       dispatch(action6);
-      const action3 = a.editEditing(true);
+      const action3 = a.editEditing(false);
       dispatch(action3);
     } else {
       const { dispatch } = this.props;
